@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class Area : MonoBehaviour
 {
-    bool bomba;
+    [SerializeField] bool bomba;
     bool revelado;
 
+    int indexI, indexJ;
+
+
+
     [SerializeField] Sprite[] spritesVazios;
+
+    public bool Bomba { get => bomba; }
+
+    public void DefinirIndex(int i, int j)
+    {
+        indexI = i;
+        indexJ = j;
+    }
 
     public void Clicado()
     {
@@ -20,7 +32,8 @@ public class Area : MonoBehaviour
             }
             else
             {
-                //GetComponent<SpriteRenderer>().sprite = spritesVazios[];
+                
+                GetComponent<SpriteRenderer>().sprite = spritesVazios[GameManager.instance.ChecarEntorno(indexI, indexJ)];
             }
         }
     }

@@ -12,6 +12,7 @@ public class Area : MonoBehaviour
 
 
     [SerializeField] Sprite[] spritesVazios;
+    [SerializeField] Sprite bombaSprite;
 
     public bool Bomba { get => bomba; set => bomba = value; }
 
@@ -28,7 +29,7 @@ public class Area : MonoBehaviour
         {
             if (bomba)
             {
-                //GameOver
+                GameManager.instance.GameOver();
             }
             else
             {
@@ -36,5 +37,11 @@ public class Area : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = spritesVazios[GameManager.instance.ChecarEntorno(indexI, indexJ)];
             }
         }
+    }
+
+    public void RevelarBomba()
+    {
+        revelado = true;
+        GetComponent<SpriteRenderer>().sprite = bombaSprite;
     }
 }

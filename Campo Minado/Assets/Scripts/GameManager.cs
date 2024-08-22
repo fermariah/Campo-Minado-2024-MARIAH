@@ -94,4 +94,18 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void GameOver()
+    {
+        for(int i = 0; i < diametroDoCampo; i++) 
+        {
+            for (int j = 0; j < diametroDoCampo; j++)
+            {
+                if (areas[i, j].Bomba)
+                {
+                    areas[i, j].RevelarBomba();
+                }
+            }
+        }
+    }
 }

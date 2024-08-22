@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
                 areas[i, j] = area;
             }
         }
+
+        DistribuirBombas();
     }
 
     public int ChecarEntorno(int x, int y)
@@ -71,5 +73,24 @@ public class GameManager : MonoBehaviour
         }
 
         return quantidadeDeBombas;
+    }
+
+    void DistribuirBombas()
+    {
+        int quantidadeDeBombas = 0;
+
+        while (quantidadeDeBombas < 10)
+        {
+            int[] index = new int[2];
+
+            index[0] = Random.Range(0, diametroDoCampo);
+            index[1] = Random.Range(0, diametroDoCampo);
+
+            if (areas[index[0], index[1]].Bomba == false) 
+            {
+                areas[index[0], index[1]].Bomba = true;
+                quantidadeDeBombas++; 
+            }
+        }
     }
 }

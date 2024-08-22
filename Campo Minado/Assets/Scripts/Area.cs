@@ -13,7 +13,7 @@ public class Area : MonoBehaviour
 
     [SerializeField] Sprite[] spritesVazios;
 
-    public bool Bomba { get => bomba; }
+    public bool Bomba { get => bomba; set => bomba = value; }
 
     public void DefinirIndex(int i, int j)
     {

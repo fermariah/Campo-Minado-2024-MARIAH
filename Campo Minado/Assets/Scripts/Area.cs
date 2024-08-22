@@ -21,7 +21,7 @@ public class Area : MonoBehaviour
         indexJ = j;
     }
 
-    public void Clicado()
+    public void Revelar()
     {
         Debug.Log("Clicado");
         if (!revelado)
@@ -32,7 +32,7 @@ public class Area : MonoBehaviour
             }
             else
             {
-                
+                revelado = true;
                 GetComponent<SpriteRenderer>().sprite = spritesVazios[GameManager.instance.ChecarEntorno(indexI, indexJ)];
             }
         }

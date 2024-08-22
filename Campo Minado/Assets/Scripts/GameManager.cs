@@ -58,7 +58,16 @@ public class GameManager : MonoBehaviour
 
         if(quantidadeDeBombas == 0)
         {
-            //
+            for (int i = -1; i < 2; i++)
+            {
+                for (int j = -1; j < 2; j++)
+                {
+                    if (x + i < diametroDoCampo && y + j < diametroDoCampo && x + i >= 0 && y + j >= 0)
+                    {
+                        areas[x + i, y + j].Revelar();
+                    }
+                }
+            }
         }
 
         return quantidadeDeBombas;

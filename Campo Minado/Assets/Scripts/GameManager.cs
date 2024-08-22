@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject AreaPrefab;
 
     const int diametroDoCampo = 5;
+    const int numeroDeBombas = 10;
 
     private void Start()
     {
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
     {
         int quantidadeDeBombas = 0;
 
-        while (quantidadeDeBombas < 10)
+        while (quantidadeDeBombas < numeroDeBombas)
         {
             int[] index = new int[2];
 

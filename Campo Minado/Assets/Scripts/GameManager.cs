@@ -97,15 +97,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        for(int i = 0; i < diametroDoCampo; i++) 
+        foreach(Area area in areas)
         {
-            for (int j = 0; j < diametroDoCampo; j++)
+            if (area.Bomba)
             {
-                if (areas[i, j].Bomba)
-                {
-                    areas[i, j].RevelarBomba();
-                }
+                area.RevelarBomba();
             }
+            
         }
     }
 }

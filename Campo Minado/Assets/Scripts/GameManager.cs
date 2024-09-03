@@ -19,36 +19,47 @@ public class GameManager : MonoBehaviour
     int diametroDoCampo;
     int numeroDeBombas;
 
+    ManagerUI managerUI;
+
     private void Start()
     {
-        GerarCampoMinado();
+        managerUI = GetComponent<ManagerUI>();
     }
 
     public void DefinirDiametro(string value)
     {
         diametroDoCampo = int.Parse(value);
+        managerUI.AtualizarBarra((float)numeroDeBombas / (diametroDoCampo * diametroDoCampo));
     }
 
     public void DefinirNumeroDeBombas(string value)
     {
         numeroDeBombas = int.Parse(value);
+        managerUI.AtualizarBarra((float)numeroDeBombas / (diametroDoCampo * diametroDoCampo));
     }
 
     public void GerarCampoMinado()
     {
-        areas = new Area[diametroDoCampo, diametroDoCampo];
-
-        for(int i = 0; i < diametroDoCampo; i++)
+        if (numeroDeBombas < Mathf.Pow(diametroDoCampo, 2))
         {
-            for(int j = 0; j < diametroDoCampo; j++)
-            {
-                Area area = Instantiate(AreaPrefab, new Vector2(i, j), Quaternion.identity).GetComponent<Area>();
-                area.DefinirIndex(i, j);
-                areas[i, j] = area;
-            }
-        }
+            areas = new Area[diametroDoCampo, diametroDoCampo];
 
-        DistribuirBombas();
+            for (int i = 0; i < diametroDoCampo; i++)
+            {
+                for (int j = 0; j < diametroDoCampo; j++)
+                {
+                    Area area = Instantiate(AreaPrefab, new Vector2(i, j), Quaternion.identity).GetComponent<Area>();
+                    area.DefinirIndex(i, j);
+                    areas[i, j] = area;
+                }
+            }
+
+            Camera.main.transform.position = new Vector3(diametroDoCampo / 2f - 0.5f, diametroDoCampo / 2f - 0.5f, -10);
+            Camera.main.orthographicSize = diametroDoCampo / 2f;
+
+            DistribuirBombas();
+            GameObject.Find("Menu Window").SetActive(false);
+        }
     }
 
     public int ChecarEntorno(int x, int y)

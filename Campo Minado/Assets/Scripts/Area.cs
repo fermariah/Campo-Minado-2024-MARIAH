@@ -12,7 +12,7 @@ public class Area : MonoBehaviour
 
 
     [SerializeField] Sprite[] spritesVazios;
-    [SerializeField] Sprite bombaSprite;
+    [SerializeField] Sprite bombaSprite, bandeiraSprite;
 
     public bool Bomba { get => bomba; set => bomba = value; }
 
@@ -24,8 +24,7 @@ public class Area : MonoBehaviour
 
     public void Revelar()
     {
-        Debug.Log("Clicado");
-        if (!revelado)
+        if (!revelado && !GameManager.instance.ModoBandeira)
         {
             if (bomba)
             {
@@ -36,6 +35,11 @@ public class Area : MonoBehaviour
                 revelado = true;
                 GetComponent<SpriteRenderer>().sprite = spritesVazios[GameManager.instance.ChecarEntorno(indexI, indexJ)];
             }
+        }
+        else if (!revelado && GameManager.instance.ModoBandeira)
+        {
+            revelado = true;
+            GetComponent<SpriteRenderer>().sprite = bandeiraSprite;
         }
     }
 

@@ -111,6 +111,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2a392f8c2674c5b4e9e5652f5492f218, type: 3}
   - {fileID: 21300000, guid: bff2c0e98c89f614896515e2caa37350, type: 3}
   bombaSprite: {fileID: 21300000, guid: 8c9ff6bdb1c01bc4fabb52246d56cedb, type: 3}
+  bandeiraSprite: {fileID: 21300000, guid: 8e61dde2a0f731443b80645c2a490e17, type: 3}
 --- !u!114 &1586724585884738958
 MonoBehaviour:
   m_ObjectHideFlags: 0

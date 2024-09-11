@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (x + i < diametroDoCampo && y + j < diametroDoCampo && x + i >= 0 && y + j >= 0)
                     {
-                        areas[x + i, y + j].Revelar();
+                        areas[x + i, y + j].Clicado();
                     }
                 }
             }

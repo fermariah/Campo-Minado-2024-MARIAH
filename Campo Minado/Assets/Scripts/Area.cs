@@ -12,9 +12,14 @@ public class Area : MonoBehaviour
 
 
     [SerializeField] Sprite[] spritesVazios;
-    [SerializeField] Sprite bombaSprite, bandeiraSprite;
+    [SerializeField] Sprite bombaSprite, bandeiraSprite, spriteOriginal;
 
     public bool Bomba { get => bomba; set => bomba = value; }
+
+    private void Start()
+    {
+        spriteOriginal = GetComponent<SpriteRenderer>().sprite;
+    }
 
     public void DefinirIndex(int i, int j)
     {
@@ -22,9 +27,35 @@ public class Area : MonoBehaviour
         indexJ = j;
     }
 
-    public void Revelar()
+    public void Clicado()
     {
-        if (!revelado && !bandeira && !GameManager.instance.ModoBandeira)
+        if (GameManager.instance.ModoBandeira)
+        {
+            TransformarBandeira();
+        }
+        else
+        {
+            Revelar();
+        }
+    }
+
+    void TransformarBandeira()
+    {
+        if (!bandeira)
+        {
+            bandeira = true;
+            GetComponent<SpriteRenderer>().sprite = bandeiraSprite;
+        }
+        else
+        {
+            bandeira = false;
+            GetComponent<SpriteRenderer>().sprite = spriteOriginal;
+        }
+    }
+
+    void Revelar()
+    {
+        if (!revelado && !bandeira)
         {
             if (bomba)
             {
@@ -36,11 +67,6 @@ public class Area : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = spritesVazios[GameManager.instance.ChecarEntorno(indexI, indexJ)];
                 GameManager.instance.ChecarVitoria();
             }
-        }
-        else if (GameManager.instance.ModoBandeira)
-        {
-            bandeira = true;
-            GetComponent<SpriteRenderer>().sprite = bandeiraSprite;
         }
     }
 

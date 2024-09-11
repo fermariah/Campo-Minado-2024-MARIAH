@@ -5,7 +5,7 @@ using UnityEngine;
 public class Area : MonoBehaviour
 {
     [SerializeField] bool bomba;
-    bool revelado;
+    public bool revelado, bandeira;
 
     int indexI, indexJ;
 
@@ -24,7 +24,7 @@ public class Area : MonoBehaviour
 
     public void Revelar()
     {
-        if (!revelado && !GameManager.instance.ModoBandeira)
+        if (!revelado && !bandeira && !GameManager.instance.ModoBandeira)
         {
             if (bomba)
             {
@@ -34,11 +34,12 @@ public class Area : MonoBehaviour
             {
                 revelado = true;
                 GetComponent<SpriteRenderer>().sprite = spritesVazios[GameManager.instance.ChecarEntorno(indexI, indexJ)];
+                GameManager.instance.ChecarVitoria();
             }
         }
-        else if (!revelado && GameManager.instance.ModoBandeira)
+        else if (GameManager.instance.ModoBandeira)
         {
-            revelado = true;
+            bandeira = true;
             GetComponent<SpriteRenderer>().sprite = bandeiraSprite;
         }
     }

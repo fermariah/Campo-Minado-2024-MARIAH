@@ -157,5 +157,23 @@ public class GameManager : MonoBehaviour
         }
 
         gameOver.SetActive(true);
+        managerUI.AtualizarTexto(false);
+    }
+
+    public void ChecarVitoria()
+    {
+        int quantidadeNaoRevelados = 0;
+        foreach(Area area in areas)
+        {
+            if (!area.revelado)
+            {
+                quantidadeNaoRevelados++;
+            }
+        }
+        if (quantidadeNaoRevelados == numeroDeBombas) 
+        {
+            gameOver.SetActive(true);
+            managerUI.AtualizarTexto(true);
+        }
     }
 }

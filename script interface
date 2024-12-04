@@ -1,0 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public interface IQuadrado //classe interface para definir cada quadrado para ser ampliado
+{
+    void Revelar(); //revela o conteúdo do quadrado.
+    void MarcarComoMina(); //marca o quadrado como uma mina.
+    void Resetar(); //reseta o estado do quadrado.
+    bool Revelado(); //retorna se o quadrado já foi revelado.
+}

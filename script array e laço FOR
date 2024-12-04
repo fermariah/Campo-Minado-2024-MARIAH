@@ -1,0 +1,29 @@
+using UnityEngine;
+using static UnityEditor.Progress;
+
+public class Quadrado : MonoBehaviour //classe para definir a ampliação dos quadrados através da escolha das dimensões
+{
+    public GameObject quadradoPrefab; //prefab do quadrado
+    public int linhas = 5; //quantidade de linhas
+    public int colunas = 5; //quantidade de colunas
+    private GameObject[] grid; //array unidimensional
+
+    void Start() //método para criar um array para armazenar os quadrados, instanciando o quadrado
+    {
+        grid = new GameObject[linhas * colunas]; 
+
+        for (int x = 0; x < linhas; x++)
+        {
+            for (int y = 0; y < colunas; y++)
+            {
+                int index = x * colunas + y;
+                GameObject square = Instantiate(quadradoPrefab, new Vector2(x, y), Quaternion.identity);
+                grid[index] = square;
+                if (Random.value < 0.2f) 
+                {
+                    square.GetComponent<IQuadrado>().MarcarComoMina();
+                }
+            }
+        }
+    }
+}
